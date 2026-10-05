@@ -1,0 +1,38 @@
+baseURL = 'https://wujingkai-blog.org/'
+languageCode = 'zh-CN'
+defaultContentLanguage = 'zh-cn'
+title = '武静慨'
+theme = 'blowfish'
+enableRobotsTXT = true
+paginate = 10
+
+[outputs]
+  home = ['html', 'rss', 'json']
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.highlight]
+  style = 'monokai'
+  codeFences = true
+  lineNos = false
+
+[params]
+  description = '记录技术与生活，分享编程与AI学习心得'
+  keywords = ['编程', 'AI', '后端开发', '技术笔记', 'Hugo博客']
+  defaultAppearanceLight = 'light'
+
+[params.author]
+  name = '武静慨'
+
+[[menu.main]]
+  identifier = 'home'
+  name = '首页'
+  url = '/'
+  weight = 1
+
+[[menu.main]]
+  identifier = 'posts'
+  name = '文章'
+  url = '/posts/'
+  weight = 2

@@ -1,0 +1,7 @@
+{{- $src := .Get "src" -}}
+{{- with .Page.Resources.GetMatch $src -}}
+  {{- $src = .RelPermalink -}}
+{{- end -}}
+<audio controls preload="metadata"{{ with .Get "title" }} title="{{ . | safeHTMLAttr }}"{{ end }} src="{{ $src | safeURL }}">
+  当前浏览器不支持音频播放，可直接打开<a href="{{ $src | safeURL }}">音频文件</a>。
+</audio>
