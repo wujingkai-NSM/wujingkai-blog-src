@@ -25,6 +25,10 @@ paginate = 10
 [params.author]
   name = '武静慨'
 
+[params.homepage]
+  layout = 'page'
+  showRecent = false
+
 [[menu.main]]
   identifier = 'home'
   name = '首页'
