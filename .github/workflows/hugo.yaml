@@ -28,5 +28,5 @@ jobs:
           external_repository: wujingkai-NSM/wujingkai-NSM.github.io
           publish_branch: main
           publish_dir: ./public
-          deploy_key: ${{ secrets.BLOG_DEPLOY_KEY }}
+          github_token: ${{ secrets.PAGES_PUSH_TOKEN }}
           force_orphan: true
