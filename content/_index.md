@@ -19,5 +19,3 @@ Hey！我是武静慨，一个喜欢把工具和流程打磨得更顺手的开�
 - [LeetCode](https://leetcode.cn/u/wujingkai/) —— 刷题
 - [CSDN 博客](https://blog.csdn.net/m0_55328858?type=blog) —— 早期写的技术文章
 - 邮箱：[cswujingkai@163.com](mailto:cswujingkai@163.com)
-
-本站使用 [Hugo](https://gohugo.io/) 构建，主题是 [Blowfish](https://blowfish.page/)。
