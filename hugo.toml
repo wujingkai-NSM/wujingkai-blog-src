@@ -2,7 +2,7 @@ baseURL = 'https://wujingkai-blog.org/'
 languageCode = 'zh-CN'
 defaultContentLanguage = 'zh-cn'
 title = '武静慨'
-theme = 'blowfish'
+theme = 'papermod'
 enableRobotsTXT = true
 paginate = 10
 
