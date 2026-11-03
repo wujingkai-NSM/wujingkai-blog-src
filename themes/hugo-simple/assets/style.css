@@ -1,0 +1,80 @@
+body {
+  -webkit-text-size-adjust: 100%; /* prevent Mobile Safari from adjusting font sizes */
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-between > a[rel="next"] {
+  margin-left: auto;
+}
+
+.post-nav {
+  margin-top: 3rem;
+}
+
+.post-nav a {
+  display: flex;
+  flex-direction: column;
+  max-width: 48%;
+  text-decoration: none;
+}
+
+.post-nav a[rel="next"] {
+  text-align: right;
+}
+
+.post-nav small {
+  color: var(--text-light);
+}
+
+.post-nav .title {
+  text-decoration: underline;
+}
+
+.post-date,
+.blog-posts time {
+  color: var(--text-light);
+  font-style: italic;
+}
+
+ul.blog-posts {
+  padding-left: 0;
+}
+
+ul.blog-posts > li {
+  list-style-type: none;
+  display: flex;
+}
+
+ul.blog-posts > li > time {
+  flex: 0 0 130px;
+}
+
+.tags a:not(:last-child) {
+  margin-inline-end: 0.5em;
+}
+
+nav#TableOfContents > ul {
+  margin-block-start: 0;
+}
+
+.icon {
+  vertical-align: sub;
+  padding-right: 0.25rem;
+  display: inline-block;
+  width: 1em;
+  height: 1.3em;
+  margin-right: 0.2rem;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+div.highlight code,
+div.highlight pre,
+div.highlight pre span {
+  color: inherit;
+}

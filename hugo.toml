@@ -2,7 +2,7 @@ baseURL = 'https://wujingkai-blog.org/'
 languageCode = 'zh-CN'
 defaultContentLanguage = 'zh-cn'
 title = '武静慨'
-theme = 'papermod'
+theme = 'hugo-simple'
 enableRobotsTXT = true
 paginate = 10
 

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="{{ .Params.lang | default .Language.Locale }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {{- partial "favicon.html" . -}}
+    <title>
+      {{- block "title" . -}}
+        {{- if not .IsHome -}}
+          {{ with .Title }}{{ . }}&nbsp;|&nbsp;{{ end }}
+        {{- end -}}
+        {{ site.Title }}
+      {{- end -}}
+    </title>
+
+    {{- partial "seo_tags.html" . -}}
+    {{ if ne .Kind "404" }}
+      <link rel="canonical" href="{{ block "canonical" . }}{{ .Permalink }}{{ end }}" />
+    {{ end }}
+
+    {{ $simple := resources.Get "simple.css" }}
+    {{ $chroma := resources.Get "chroma.css" }}
+    {{ $style := resources.Get "style.css" }}
+    {{ $css := slice $simple $chroma $style | resources.Concat "bundle.css" | minify | fingerprint }}
+    <link href="{{ $css.RelPermalink }}" rel="stylesheet" />
+
+    {{ with .Params.style }}
+      {{ with resources.Get . }}
+        {{ $extra := . | minify | fingerprint }}
+        <link href="{{ $extra.RelPermalink }}" rel="stylesheet" />
+      {{ else }}
+        {{ warnf "style: asset %q not found in page %q" $.Params.style $.Path }}
+      {{ end }}
+    {{ end }}
+
+    {{ with .OutputFormats.Get "rss" -}}
+      <link
+        rel="{{ .Rel }}"
+        type="{{ .MediaType.Type }}"
+        href="{{ .RelPermalink }}"
+        title="{{ site.Title }}"
+      />
+    {{ end -}}
+
+    {{ with partial "author.html" }}
+      {{ with .fediverse }}
+        <meta name="fediverse:creator" content="{{ . }}" />
+      {{ end }}
+    {{ end }}
+
+    {{/* Override by placing a custom_head.html in your site's layouts/_partials directory. */}}
+    {{- partial "custom_head.html" . -}}
+  </head>
+
+  <body>
+    <header>
+      {{ partial "header.html" . }}
+    </header>
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer>
+      {{ partial "custom_footer.html" . }}
+      {{ partial "footer.html" . }}
+    </footer>
+
+    {{/* Override by placing a custom_body.html in your site's layouts/_partials directory. */}}
+    {{- partial "custom_body.html" . -}}
+  </body>
+</html>

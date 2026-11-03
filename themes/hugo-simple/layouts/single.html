@@ -1,0 +1,49 @@
+{{ define "main" }}
+  {{ $isPost := in site.MainSections .Type }}
+  {{ if and $isPost (not .Params.menu) (not .Date.IsZero) }}
+    <p class="post-date">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">
+        {{ .Date.Format (default "2006-01-02" site.Params.dateFormat) }}
+      </time>
+    </p>
+  {{ end }}
+  {{ if .Params.toc }}
+    {{ $toc := .TableOfContents }}
+    {{ if strings.TrimSpace ($toc | plainify) }}
+      <details>
+        <summary>{{ T "toc" }}</summary>
+        {{ $toc }}
+      </details>
+    {{ end }}
+  {{ end }}
+  {{ .Content }}
+  {{ if $isPost }}
+    {{ with .GetTerms "tags" }}
+      <p class="tags">
+        {{ range . }}
+          <a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>
+        {{ end }}
+      </p>
+    {{ end }}
+    {{ $pages := .CurrentSection.RegularPages }}
+    {{/* Hugo's Next is the newer page and Prev the older one; list order is newest first. */}}
+    {{ $newer := $pages.Next . }}
+    {{ $older := $pages.Prev . }}
+    {{ if or $newer $older }}
+      <nav class="post-nav flex-between" aria-label="{{ T "post_navigation" }}">
+        {{ with $newer }}
+          <a href="{{ .RelPermalink }}" rel="prev">
+            <small><span aria-hidden="true">←</span> {{ T "newer_post" }}</small>
+            <span class="title">{{ .Title }}</span>
+          </a>
+        {{ end }}
+        {{ with $older }}
+          <a href="{{ .RelPermalink }}" rel="next">
+            <small>{{ T "older_post" }} <span aria-hidden="true">→</span></small>
+            <span class="title">{{ .Title }}</span>
+          </a>
+        {{ end }}
+      </nav>
+    {{ end }}
+  {{ end }}
+{{ end }}

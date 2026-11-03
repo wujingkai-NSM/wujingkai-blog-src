@@ -1,0 +1,20 @@
+{{- $description := .Description -}}
+{{- if not $description -}}
+  {{- if .IsPage -}}
+    {{- $description = .Summary | plainify | htmlUnescape | chomp -}}
+  {{- else -}}
+    {{- $description = site.Params.description -}}
+  {{- end -}}
+{{- end -}}
+<meta name="description" content="{{ $description }}" />
+{{ with and .IsPage .Params.tags }}
+  <meta name="keywords" content="{{ delimit . ", " }}" />
+{{ end }}
+{{ with partial "author.html" }}
+  {{ with .name }}
+    <meta name="author" content="{{ . }}" />
+  {{ end }}
+{{ end }}
+
+{{ partial "opengraph.html" . }}
+{{ partial "twitter_cards.html" . }}
